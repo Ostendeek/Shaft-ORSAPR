@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>NUnit.ReSharperRunner2</id>
+    <version>2.6.408</version>
+    <title>NUnit 2.6.4 runtime for ReSharper test runner</title>
+    <authors>JetBrains</authors>
+    <owners>JetBrains</owners>
+    <projectUrl>http://www.jetbrains.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>NUnit 2.6.4 runtime for ReSharper test runner</description>
+  </metadata>
+</package>
