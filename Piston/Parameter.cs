@@ -97,21 +97,20 @@ namespace Val
         /// <param name="value">Начальное значение</param>
         /// <param name="min">Начальное минимальное значение</param>
         /// <param name="max">Начальное максимальное значение</param>
-        public Parameter(double value, double min, double max)
+        public Parameter(double min, double value , double max)
         {
-            _value = value;
+           _value = value;
             _min = min;
             _max = max;
             Validate();
-            // Раскомментить для тестов
-            /*if (value >= Min && value <= Max)
+            if (value >= Min && value <= Max)
             {
                 _value = value;
             }
             else
             {
-                throw new ValueException();
-            }*/
+                throw new ArgumentOutOfRangeException();
+            }
         }
 
         /// <summary>

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Val
+﻿namespace Val
 {
+    /// <summary>
+    /// Нумерация ступеней вала.
+    /// </summary>
     public enum NumberOfStage
     {
         Stage1,

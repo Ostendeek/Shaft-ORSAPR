@@ -48,7 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exeptions.cs" />
     <Compile Include="NumberOfStage.cs" />
     <Compile Include="OrientationParameterType.cs" />
     <Compile Include="ParameterUpDown.cs">

@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Val
+﻿namespace Val
 {
+    /// <summary>
+    /// Ориентация направления текста.
+    /// </summary>
     public enum OrientationParameterType
     {
         Horizontal,
-
         Vertical,
     }
 }

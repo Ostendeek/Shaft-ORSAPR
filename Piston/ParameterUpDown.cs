@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace Val
 {
-    //TODO:
+    
     public partial class ParameterUpDown : UserControl
     {
         private Parameter _parameter;
@@ -18,6 +18,11 @@ namespace Val
             numericUpDown1.ValueChanged += NumericUpDown1OnValueChanged;
         }
 
+        /// <summary>
+        /// Обработчик события изменения значения контрола.
+        /// </summary>
+        /// <param name="sender">Отправитель события</param>
+        /// <param name="eventArgs">Параметры</param>
         private void NumericUpDown1OnValueChanged(object sender, EventArgs eventArgs)
         {
             if (!_inited)
@@ -31,7 +36,9 @@ namespace Val
 
             _parameterOnParameterChangedStopped = false;
         }
-
+        /// <summary>
+        /// Свойства метода Parameter.
+        /// </summary>
         public Parameter Parameter
         {
             get { return _parameter; }
@@ -58,7 +65,11 @@ namespace Val
                 _parameter = value;
             }
         }
-
+       /// <summary>
+       /// Обаботчик события изменения параметра.
+       /// </summary>
+        /// <param name="sender">Отправитель события</param>
+       /// <param name="eventArgs">Параметры</param>
         private void ParameterOnParameterChanged(object sender, EventArgs eventArgs)
         {
             if (_parameterOnParameterChangedStopped || !_inited)

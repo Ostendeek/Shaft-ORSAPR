@@ -74,6 +74,7 @@
             this.captionTextBox = new System.Windows.Forms.TextBox();
             this.orientComboBox = new System.Windows.Forms.ComboBox();
             this.selectComboBox = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -498,7 +499,7 @@
             // 
             // captionTextBox
             // 
-            this.captionTextBox.Location = new System.Drawing.Point(417, 479);
+            this.captionTextBox.Location = new System.Drawing.Point(416, 479);
             this.captionTextBox.Name = "captionTextBox";
             this.captionTextBox.Size = new System.Drawing.Size(100, 20);
             this.captionTextBox.TabIndex = 36;
@@ -510,7 +511,7 @@
             this.orientComboBox.Items.AddRange(new object[] {
             "Горизональное",
             "Вертикальное"});
-            this.orientComboBox.Location = new System.Drawing.Point(280, 478);
+            this.orientComboBox.Location = new System.Drawing.Point(279, 478);
             this.orientComboBox.Name = "orientComboBox";
             this.orientComboBox.Size = new System.Drawing.Size(121, 21);
             this.orientComboBox.TabIndex = 37;
@@ -525,17 +526,27 @@
             "3",
             "4",
             "5"});
-            this.selectComboBox.Location = new System.Drawing.Point(153, 478);
+            this.selectComboBox.Location = new System.Drawing.Point(152, 478);
             this.selectComboBox.Name = "selectComboBox";
             this.selectComboBox.Size = new System.Drawing.Size(121, 21);
             this.selectComboBox.TabIndex = 38;
             this.selectComboBox.Text = "1";
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(14, 482);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(119, 13);
+            this.label12.TabIndex = 39;
+            this.label12.Text = "Выдавливание текста";
+            // 
             // ValForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(730, 572);
+            this.ClientSize = new System.Drawing.Size(519, 509);
+            this.Controls.Add(this.label12);
             this.Controls.Add(this.selectComboBox);
             this.Controls.Add(this.orientComboBox);
             this.Controls.Add(this.captionTextBox);
@@ -549,6 +560,8 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.buildValButton);
             this.Controls.Add(this.label1);
+            this.MaximumSize = new System.Drawing.Size(535, 547);
+            this.MinimumSize = new System.Drawing.Size(535, 547);
             this.Name = "ValForm";
             this.Text = "Построение вала";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -619,6 +632,7 @@
         private System.Windows.Forms.TextBox captionTextBox;
         private System.Windows.Forms.ComboBox orientComboBox;
         private System.Windows.Forms.ComboBox selectComboBox;
+        private System.Windows.Forms.Label label12;
 
     }
 }

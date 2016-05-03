@@ -202,14 +202,45 @@ namespace Val
         /// </summary>
        private void Validate()
         {
-                _parameters[ParameterType.HeightKeyway1Stage].Max = 0.2 * _parameters[ParameterType.ShaftDiameter1Stage].Value;
-                _parameters[ParameterType.HeightKeyway1Stage].Validate();
-                _parameters[ParameterType.LengthKeyway1Stage].Max = 0.35 * _parameters[ParameterType.ShaftLength1Stage].Value;
-                _parameters[ParameterType.LengthKeyway1Stage].Validate();
-                _parameters[ParameterType.HeightKeyway3Stage].Max = 0.2 * _parameters[ParameterType.ShaftDiameter3Stage].Value;
-                _parameters[ParameterType.HeightKeyway3Stage].Validate();
-                _parameters[ParameterType.LengthKeyway3Stage].Max = 0.5 * _parameters[ParameterType.ShaftLength3Stage].Value;
-                _parameters[ParameterType.LengthKeyway3Stage].Validate();
+            if (_parameters[ParameterType.ShaftLength1Stage].Value >=
+                _parameters[ParameterType.LengthKeyway1Stage].Value)
+            {
+                _parameters[ParameterType.ShaftLength1Stage].Validate();
+            }
+            else
+            {
+                throw new ApplicationException("Enter the correct value of the keyway length!");
+            }
+
+            if (_parameters[ParameterType.ShaftDiameter1Stage].Value >=
+                _parameters[ParameterType.HeightKeyway1Stage].Value)
+            {
+                throw new ApplicationException("Enter the correct value of the keyway height!");
+            }
+            else
+            {
+                _parameters[ParameterType.ShaftDiameter1Stage].Validate();
+            }
+
+            if (_parameters[ParameterType.ShaftLength3Stage].Value >=
+                 _parameters[ParameterType.LengthKeyway3Stage].Value)
+            {
+                throw new ApplicationException("Enter the correct value of the keyway length!");
+            }
+            else
+            {
+                _parameters[ParameterType.ShaftLength3Stage].Validate();
+            }
+
+            if (_parameters[ParameterType.ShaftDiameter3Stage].Value >=
+                _parameters[ParameterType.HeightKeyway3Stage].Value)
+            {
+                throw new ApplicationException("Enter the correct value of the keyway height!");
+            }
+            else
+            {
+                _parameters[ParameterType.ShaftDiameter3Stage].Validate();
+            }
         }
         #endregion
     }
