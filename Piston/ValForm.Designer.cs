@@ -504,9 +504,11 @@
             this.captionTextBox.Size = new System.Drawing.Size(100, 20);
             this.captionTextBox.TabIndex = 36;
             this.captionTextBox.Text = "HELP";
+            this.captionTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.captionTextBox_KeyPress);
             // 
             // orientComboBox
             // 
+            this.orientComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.orientComboBox.FormattingEnabled = true;
             this.orientComboBox.Items.AddRange(new object[] {
             "Горизональное",
@@ -515,10 +517,11 @@
             this.orientComboBox.Name = "orientComboBox";
             this.orientComboBox.Size = new System.Drawing.Size(121, 21);
             this.orientComboBox.TabIndex = 37;
-            this.orientComboBox.Text = "Горизонтальное";
+            
             // 
             // selectComboBox
             // 
+            this.selectComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.selectComboBox.FormattingEnabled = true;
             this.selectComboBox.Items.AddRange(new object[] {
             "1",
@@ -530,7 +533,6 @@
             this.selectComboBox.Name = "selectComboBox";
             this.selectComboBox.Size = new System.Drawing.Size(121, 21);
             this.selectComboBox.TabIndex = 38;
-            this.selectComboBox.Text = "1";
             // 
             // label12
             // 
@@ -564,7 +566,7 @@
             this.MinimumSize = new System.Drawing.Size(535, 547);
             this.Name = "ValForm";
             this.Text = "Построение вала";
-            this.Load += new System.EventHandler(this.Form1_Load);
+          
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

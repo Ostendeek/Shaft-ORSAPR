@@ -19,40 +19,6 @@ namespace Val
         /// </summary>
         private string _caption;
 
-        private readonly Dictionary<NumberOfStage, string> _stagesRu = new Dictionary<NumberOfStage, string>
-            {
-                {NumberOfStage.Stage1, "Первая ступень"},
-                {NumberOfStage.Stage2, "Вторая ступень"},
-                {NumberOfStage.Stage3,"Третья ступень"},
-                {NumberOfStage.Stage4, "Четвертая ступень"},
-                {NumberOfStage.Stage5, "Пятая ступень"},
-            };
-
-        private readonly Dictionary<OrientationParameterType, string> _orientationRu = new Dictionary<OrientationParameterType, string>
-            {
-                {OrientationParameterType.Horizontal, "Горизонтальная"},
-                {OrientationParameterType.Vertical, "Вертикальная"},
-         
-            };
-
-        private readonly Dictionary<NumberOfStage, ParameterType> _horizontalOrientation = new Dictionary<NumberOfStage, ParameterType>
-            {
-                {NumberOfStage.Stage1, ParameterType.ShaftDiameter1Stage},
-                {NumberOfStage.Stage2, ParameterType.ShaftDiameter2Stage},
-                {NumberOfStage.Stage3,ParameterType.ShaftDiameter3Stage},
-                {NumberOfStage.Stage4, ParameterType.ShaftDiameter3Stage},
-                {NumberOfStage.Stage5, ParameterType.ShaftDiameter5Stage},
-            };
-
-        private readonly Dictionary<NumberOfStage, ParameterType> _verticalOrientation = new Dictionary<NumberOfStage, ParameterType>
-            {
-                {NumberOfStage.Stage1, ParameterType.ShaftLength1Stage},
-                {NumberOfStage.Stage2, ParameterType.ShaftLength2Stage},
-                {NumberOfStage.Stage3,ParameterType.ShaftLength3Stage},
-                {NumberOfStage.Stage4, ParameterType.ShaftLength4Stage},
-                {NumberOfStage.Stage5, ParameterType.ShaftLength5Stage},
-            };
-
 
         /// <summary>
         /// Сеттер и геттер надписи.
@@ -62,6 +28,9 @@ namespace Val
             get { return _caption; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private NumberOfStage _numberOfStage;
 
         /// <summary>
@@ -167,6 +136,7 @@ namespace Val
             throw new ApplicationException("There is no such number of stage!");
         }
 
+        
         /// <summary>
         /// Получить координату Х.
         /// </summary>
@@ -198,7 +168,7 @@ namespace Val
 
 
         /// <summary>
-        /// Проверка значение и установка ограничений.
+        /// Проверка значений и установка ограничений.
         /// </summary>
        private void Validate()
         {
@@ -213,34 +183,46 @@ namespace Val
             }
 
             if (_parameters[ParameterType.ShaftDiameter1Stage].Value >=
-                _parameters[ParameterType.HeightKeyway1Stage].Value)
+                _parameters[ParameterType.WidthKeyway1Stage].Value)
             {
-                throw new ApplicationException("Enter the correct value of the keyway height!");
+                 _parameters[ParameterType.ShaftDiameter1Stage].Validate();
             }
             else
             {
-                _parameters[ParameterType.ShaftDiameter1Stage].Validate();
+                throw new ApplicationException("Enter the correct value of the keyway height!");
             }
 
             if (_parameters[ParameterType.ShaftLength3Stage].Value >=
                  _parameters[ParameterType.LengthKeyway3Stage].Value)
             {
-                throw new ApplicationException("Enter the correct value of the keyway length!");
+                _parameters[ParameterType.ShaftLength3Stage].Validate();
             }
             else
             {
-                _parameters[ParameterType.ShaftLength3Stage].Validate();
+                throw new ApplicationException("Enter the correct value of the keyway length!");
             }
 
             if (_parameters[ParameterType.ShaftDiameter3Stage].Value >=
-                _parameters[ParameterType.HeightKeyway3Stage].Value)
+                _parameters[ParameterType.WidthKeyway3Stage].Value)
             {
-                throw new ApplicationException("Enter the correct value of the keyway height!");
+               _parameters[ParameterType.ShaftDiameter3Stage].Validate();
             }
             else
             {
+                throw new ApplicationException("Enter the correct value of the keyway height!");
+            }
+
+            if (_parameters[ParameterType.ShaftDiameter3Stage].Value >=
+                _parameters[ParameterType.WidthKeyway3Stage].Value)
+            {
                 _parameters[ParameterType.ShaftDiameter3Stage].Validate();
             }
+            else
+            {
+                throw new ApplicationException("Enter the correct value of the keyway height!");
+            }
+
+
         }
         #endregion
     }

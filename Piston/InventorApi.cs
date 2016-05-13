@@ -43,7 +43,10 @@ namespace Val
         /// </summary>
         private EdgeCollection _edgeCol;
 
-        private const double MagicIndex = 10.0;
+        /// <summary>
+        /// Индекс для масштабирования размеров.
+        /// </summary>
+        private const double Index = 10.0;
         
         #endregion
 
@@ -100,7 +103,7 @@ namespace Val
         public void MakeNewWorkingPlane(int n, double offset)
         {
             var mainPlane = _partDef.WorkPlanes[n];
-            var offsetPlane = _partDef.WorkPlanes.AddByPlaneAndOffset(mainPlane, offset / MagicIndex);
+            var offsetPlane = _partDef.WorkPlanes.AddByPlaneAndOffset(mainPlane, offset / Index);
             _currentSketch = _partDef.Sketches.Add(offsetPlane);
         }
 
@@ -113,10 +116,10 @@ namespace Val
         /// <param name="pointTwoY">Правая нижняя координата Y</param>
         public void DrawRectangle(double pointOneX, double pointOneY, double pointTwoX, double pointTwoY)
         {
-            pointOneX /= MagicIndex;
-            pointOneY /= MagicIndex;
-            pointTwoX /= MagicIndex;
-            pointTwoY /= MagicIndex;
+            pointOneX /= Index;
+            pointOneY /= Index;
+            pointTwoX /= Index;
+            pointTwoY /= Index;
             var cornerPointOne = _transGeometry.CreatePoint2d(pointOneX, pointOneY);
             var cornerPointTwo = _transGeometry.CreatePoint2d(pointTwoX, pointTwoY);
             _currentSketch.SketchLines.AddAsTwoPointRectangle(cornerPointOne, cornerPointTwo);
@@ -144,7 +147,7 @@ namespace Val
             collection.Add(textBox);
             var pointRotation = _transGeometry.CreatePoint2d(startX, startY);
 
-            OrientationParameterType type = OrientationParameterType.Vertical;
+          //  OrientationParameterType type = OrientationParameterType;
 
             if (type == OrientationParameterType.Horizontal)
             {
@@ -154,7 +157,7 @@ namespace Val
             {
                 _currentSketch.RotateSketchObjects(collection, pointRotation, (Math.PI/2.0)*90);
             }
-            Extrude(MagicIndex);
+            Extrude(Index);
         }
 
         /// <summary>
@@ -196,9 +199,9 @@ namespace Val
         /// <param name="diameter">Диаметр круга</param>
         public void DrawCircle(double centerPointX, double centerPointY, double diameter)
         {
-            centerPointX /= MagicIndex;
-            centerPointY /= MagicIndex;
-            diameter /= MagicIndex;
+            centerPointX /= Index;
+            centerPointY /= Index;
+            diameter /= Index;
             _currentSketch.SketchCircles.AddByCenterRadius(_transGeometry.CreatePoint2d(centerPointX, centerPointY), 
                 0.5 * diameter);
         }
@@ -212,7 +215,7 @@ namespace Val
         {
             var extrudeDef = _partDef.Features.ExtrudeFeatures.CreateExtrudeDefinition(_currentSketch.Profiles.AddForSolid(), 
                 PartFeatureOperationEnum.kJoinOperation);
-            extrudeDef.SetDistanceExtent(distance / MagicIndex, extrudeDirection);
+            extrudeDef.SetDistanceExtent(distance / Index, extrudeDirection);
             _partDef.Features.ExtrudeFeatures.Add(extrudeDef);
         }
 
@@ -228,7 +231,7 @@ namespace Val
             DrawCircle(centerPointX, centerPointY, diameter);
             var extrudeDef = _partDef.Features.ExtrudeFeatures.CreateExtrudeDefinition(_currentSketch.Profiles.AddForSolid(), 
                 PartFeatureOperationEnum.kCutOperation);
-            extrudeDef.SetDistanceExtent(distance / MagicIndex, PartFeatureExtentDirectionEnum.kPositiveExtentDirection);
+            extrudeDef.SetDistanceExtent(distance / Index, PartFeatureExtentDirectionEnum.kPositiveExtentDirection);
            _partDef.Features.ExtrudeFeatures.Add(extrudeDef);
         }
 
@@ -242,16 +245,16 @@ namespace Val
         /// <param name="distance">Дистанция выдавливания</param>
         public void CutExtrudeRectangle(double pointOneX, double pointOneY, double pointTwoX, double pointTwoY, double distance)
         {
-            pointOneX /= MagicIndex;
-            pointOneY /= MagicIndex;
-            pointTwoX /= MagicIndex;
-            pointTwoY /= MagicIndex;
+            pointOneX /= Index;
+            pointOneY /= Index;
+            pointTwoX /= Index;
+            pointTwoY /= Index;
             var cornerPointOne = _transGeometry.CreatePoint2d(pointOneX, pointOneY);
             var cornerPointTwo = _transGeometry.CreatePoint2d(pointTwoX, pointTwoY);
             _currentSketch.SketchLines.AddAsTwoPointRectangle(cornerPointOne, cornerPointTwo);
             var extrudeDef = _partDef.Features.ExtrudeFeatures.CreateExtrudeDefinition(_currentSketch.Profiles.AddForSolid(), 
                 PartFeatureOperationEnum.kCutOperation);
-            extrudeDef.SetDistanceExtent(distance / MagicIndex, PartFeatureExtentDirectionEnum.kPositiveExtentDirection);
+            extrudeDef.SetDistanceExtent(distance / Index, PartFeatureExtentDirectionEnum.kPositiveExtentDirection);
             _partDef.Features.ExtrudeFeatures.Add(extrudeDef);
         }
 
@@ -280,10 +283,10 @@ namespace Val
         /// <param name="endPointY">Конечная координата Y</param>
         public void DrawLine(double startPointX, double startPointY, double endPointX, double endPointY)
         {
-            startPointX /= MagicIndex;
-            startPointY /= MagicIndex;
-            endPointX /= MagicIndex;
-            endPointY /= MagicIndex;
+            startPointX /= Index;
+            startPointY /= Index;
+            endPointX /= Index;
+            endPointY /= Index;
             var startPoint = _transGeometry.CreatePoint2d(startPointX, startPointY);
             var endPoint = _transGeometry.CreatePoint2d(endPointX, endPointY);
             _currentSketch.SketchLines.AddByTwoPoints(startPoint, endPoint);
@@ -296,8 +299,8 @@ namespace Val
         /// <param name="endPointY">Координата Y конца линии</param>
         public void DrawLine(double endPointX, double endPointY)
         {
-            endPointX /= MagicIndex;
-            endPointY /= MagicIndex;
+            endPointX /= Index;
+            endPointY /= Index;
             var endPoint = _transGeometry.CreatePoint2d(endPointX, endPointY);
             _currentSketch.SketchLines.AddByTwoPoints(_currentSketch.SketchLines[_currentSketch.SketchLines.Count].EndSketchPoint, endPoint);
         }

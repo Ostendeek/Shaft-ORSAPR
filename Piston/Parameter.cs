@@ -7,7 +7,6 @@ namespace Val
     /// </summary>
     public class Parameter
     {
-
         #region Fields
 
         /// <summary>
@@ -47,7 +46,7 @@ namespace Val
         }
 
         /// <summary>
-        /// 
+        /// Метод обрабатывающий событие изменяющее значение.
         /// </summary>
         /// <param name="value"></param>
         /// <param name="finalValue"></param>

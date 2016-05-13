@@ -92,6 +92,7 @@ namespace Val
                 _api.Extrude(stage.Item3);
             }
 
+            
             #region chamfer
 
             _api.DrawChamfer(groove/1.5, NumberOfStage.Stage5);
@@ -109,8 +110,8 @@ namespace Val
             }
 
             #endregion chamfer
-
-           // _api.DrawText(_valProperties.Caption, _valProperties.GetPointX(), 0.0, _valProperties.GetPointZ());
+            
+           _api.DrawText(_valProperties.Caption, _valProperties.GetPointX(), 0.0, _valProperties.GetPointZ());
 
             #region PAZ
 
@@ -125,8 +126,8 @@ namespace Val
             _api.CutExtrudeRectangle(-halfPointX1Stage + halfLengthKeyway1Stage,
                 halfPointY1Stage + halfWidthKeyway1Stage,
                 -halfPointX1Stage - halfLengthKeyway1Stage, halfPointY1Stage - halfWidthKeyway1Stage, heightKeyway1Stage);
-            _api.CutExtrudeCircle(-halfPointX1Stage + halfLengthKeyway1Stage, halfPointY1Stage, 20, heightKeyway1Stage);
-            _api.CutExtrudeCircle(-halfPointX1Stage - halfLengthKeyway1Stage, halfPointY1Stage, 20, heightKeyway1Stage);
+            _api.CutExtrudeCircle(-halfPointX1Stage + halfLengthKeyway1Stage, halfPointY1Stage, widthKeyway1Stage, heightKeyway1Stage);
+            _api.CutExtrudeCircle(-halfPointX1Stage - halfLengthKeyway1Stage, halfPointY1Stage, widthKeyway1Stage, heightKeyway1Stage);
 
             var halfPointY3Stage = shaftDiameter3Stage/4;
             var halfWidthKeyway3Stage = widthKeyway3Stage/2;
@@ -138,8 +139,8 @@ namespace Val
             _api.CutExtrudeRectangle(-halfPointX3Stage + halfLengthKeyway3Stage,
                 halfPointY3Stage + halfWidthKeyway3Stage,
                 -halfPointX3Stage - halfLengthKeyway3Stage, halfPointY3Stage - halfWidthKeyway3Stage, heightKeyway3Stage);
-            _api.CutExtrudeCircle(-halfPointX3Stage + halfLengthKeyway3Stage, halfPointY3Stage, 22, heightKeyway3Stage);
-            _api.CutExtrudeCircle(-halfPointX3Stage - halfLengthKeyway3Stage, halfPointY3Stage, 22, heightKeyway3Stage);
+            _api.CutExtrudeCircle(-halfPointX3Stage + halfLengthKeyway3Stage, halfPointY3Stage, widthKeyway3Stage, heightKeyway3Stage);
+            _api.CutExtrudeCircle(-halfPointX3Stage - halfLengthKeyway3Stage, halfPointY3Stage, widthKeyway3Stage, heightKeyway3Stage);
 
             #endregion PAZ
 

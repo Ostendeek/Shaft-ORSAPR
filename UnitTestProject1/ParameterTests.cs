@@ -8,12 +8,14 @@ namespace UnitTestProject1
     public class ParameterTests
     {
         [Test]
-        [TestCase(15.0, TestName = "Вводимое значение параметра равно 15")]
-        [TestCase(double.MaxValue, TestName = "Максимальное значение параметра")]
-        [TestCase(double.MinValue, TestName = "Минимальное значение параметра")]
-        public void NotPositiveValueTest(double testValue)
+        [TestCase(0.0, 15.0, 10.0, TestName = "Вводимое значение параметра равно 15")]
+        [TestCase(0.0, double.MaxValue, 10.0, TestName = "Максимальное значение параметра")]
+        [TestCase(0.0, double.MinValue, 10.0, TestName = "Минимальное значение параметра")]
+        [TestCase(double.MaxValue, 15.0, double.MaxValue, TestName = "Максимальные значения пределов параметра")]
+        [TestCase(15, double.MinValue, double.MinValue, TestName = "Минимальные значения пределов параметра")]
+        public void NotPositiveValueTest(double testValue1, double testValue2, double testValue3)
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => new Parameter(0.0, testValue, 10.0));
+            Assert.Throws<ArgumentOutOfRangeException>(() => new Parameter(testValue1, testValue2, testValue3));
         }
 
         [TestCase(5, TestName = "Вводимое значение параметра равно 5")]
@@ -22,30 +24,18 @@ namespace UnitTestProject1
             Assert.DoesNotThrow(() => new Parameter(0.0, testValue, 10.0));
            
         }
-        
-        [TestCase(double.MaxValue, double.MaxValue, TestName = "Максимальные значения пределов параметра")]
-        public void MaxLimitTest(double testLimit1, double testLimit2)
-        {
-            Assert.Throws<ArgumentOutOfRangeException>(() => new Parameter(testLimit1, 15, testLimit2));
-        }
-
-        [TestCase(double.MinValue, double.MinValue, TestName = "Минимальные значения пределов параметра")]
-        public void MinLimitTest(double testLimit1, double testLimit2)
-        {
-            Assert.Throws<ArgumentOutOfRangeException>(() => new Parameter(15, testLimit1, testLimit2));
-        }
 
         [TestCase(5, TestName = "Тест того, что невалидное значение не сохраняется")]
         public void ValueIsNotSaved(double testValue)
         {
-            Parameter _parameter = new Parameter(0.0, testValue, 10.0);
+            Parameter parameter = new Parameter(0.0, testValue, 10.0);
             try
             {
-                _parameter.Value = testValue;
+                parameter.Value = testValue;
             }
             catch (Exception)
             {
-                Assert.AreNotEqual(_parameter.Value, testValue);
+                Assert.AreNotEqual(parameter.Value, testValue);
             }
         }
     }

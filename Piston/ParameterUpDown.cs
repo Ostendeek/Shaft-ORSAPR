@@ -3,15 +3,29 @@ using System.Windows.Forms;
 
 namespace Val
 {
-    
+    /// <summary>
+    /// Класс хрянящий обработчики событий контрола UpDown.
+    /// </summary>
     public partial class ParameterUpDown : UserControl
     {
+        /// <summary>
+        /// Значения модели.
+        /// </summary>
         private Parameter _parameter;
 
+        /// <summary>
+        /// Переменная для истиности отработки события.
+        /// </summary>
         private bool _inited;
 
+        /// <summary>
+        /// Обработчик прекращения изменения параметра.
+        /// </summary>
         private bool _parameterOnParameterChangedStopped;
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="ParameterUpDown"/>
+        /// </summary>
         public ParameterUpDown()
         {
             InitializeComponent();
@@ -37,7 +51,7 @@ namespace Val
             _parameterOnParameterChangedStopped = false;
         }
         /// <summary>
-        /// Свойства метода Parameter.
+        /// Свойства метода <see cref="Parameter"/>.
         /// </summary>
         public Parameter Parameter
         {
