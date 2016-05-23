@@ -132,7 +132,7 @@ namespace Val
        /// <param name="startX">Начальная координата Х</param>
        /// <param name="startY">Начальная координата У</param>
        /// <param name="startZ">Относительное смещение поскости</param>
-        public void DrawText(string caption, double startX, double startY, double startZ)
+        public void DrawText(string caption, double startX, double startY, double startZ, OrientationParameterType orientationParameterType)
         {
             MakeNewWorkingPlane(2, startZ);
             var text = _currentSketch.TextBoxes.AddFitted(_transGeometry.CreatePoint2d(startX, startY),
@@ -149,7 +149,7 @@ namespace Val
 
           //  OrientationParameterType type = OrientationParameterType;
 
-            if (type == OrientationParameterType.Horizontal)
+            if (orientationParameterType == OrientationParameterType.Horizontal)
             {
                 _currentSketch.RotateSketchObjects(collection, pointRotation, Math.PI/2.0);
             }
@@ -159,6 +159,15 @@ namespace Val
             }
             Extrude(Index);
         }
+        /* неудачные попытки поменять угол наклона плоскости
+        public void RotateWorkingPlane()
+        {
+            //var collection = _invApp.TransientObjects.CreateObjectCollection();
+            //collection.Add(_currentSketch);
+            //_currentSketch.RotateSketchObjects(, , (Math.PI/2.0)*45);
+
+            _partDef.WorkPlanes.
+        }*/
 
         /// <summary>
         /// Построение фаски.

@@ -10,6 +10,11 @@ namespace Val
     public class ValProperties
     {
         /// <summary>
+        /// Ориентация текста.
+        /// </summary>
+        public OrientationParameterType OrientationParameterType { private set; get; }
+
+        /// <summary>
         /// Словарь параметров.
         /// </summary>
         private readonly Dictionary<ParameterType, Parameter> _parameters;
@@ -29,7 +34,7 @@ namespace Val
         }
 
         /// <summary>
-        /// 
+        /// Номера ступени.
         /// </summary>
         private NumberOfStage _numberOfStage;
 
@@ -46,18 +51,12 @@ namespace Val
             var parameter = _parameters[parameterType];
             _numberOfStage = numberOfStage;
             _caption = text;
-            try
-            {
+            OrientationParameterType = orientationParameterType;
                 int lettersCount = Convert.ToInt32(parameter.Value/25.0);
-                if (_caption.Length < lettersCount + 1)
+                if (_caption.Length > lettersCount)
                 {
+                    _caption = _caption.Substring(0, lettersCount+1);
                 }
-            }
-            catch
-            {
-                throw;
-            }
-
         }
 
         #region Methods
@@ -85,7 +84,7 @@ namespace Val
                 {ParameterType.LengthKeyway1Stage, new Parameter(16.0, 36.0, 39.0)},
                 {ParameterType.WidthKeyway3Stage, new Parameter(16.0, 22.0, 26.0)},
                 {ParameterType.HeightKeyway3Stage, new Parameter(10.0, 14.0, 16.0)},
-                {ParameterType.LengthKeyway3Stage, new Parameter(29.0, 39.0, 44.0)}                 
+                {ParameterType.LengthKeyway3Stage, new Parameter(29.0, 39.0, 44.0)}
             };
 
             foreach (var parameter in _parameters.Values)
@@ -103,7 +102,7 @@ namespace Val
         {
             Validate();
         }
-        
+
         /// <summary>
         /// Получить параметр.
         /// </summary>
@@ -113,7 +112,7 @@ namespace Val
         {
             return _parameters[parameterType];
         }
-        
+
         /// <summary>
         /// Получить координату Z.
         /// </summary>
@@ -123,20 +122,20 @@ namespace Val
             switch (_numberOfStage)
             {
                 case NumberOfStage.Stage1:
-                    return GetParameter(ParameterType.ShaftDiameter1Stage).Value/2;          
+                    return GetParameter(ParameterType.ShaftDiameter1Stage).Value/2;
                 case NumberOfStage.Stage2:
-                    return GetParameter(ParameterType.ShaftDiameter2Stage).Value/2; 
+                    return GetParameter(ParameterType.ShaftDiameter2Stage).Value/2;
                 case NumberOfStage.Stage3:
-                    return GetParameter(ParameterType.ShaftDiameter3Stage).Value / 2;
+                    return GetParameter(ParameterType.ShaftDiameter3Stage).Value/2;
                 case NumberOfStage.Stage4:
                     return GetParameter(ParameterType.ShaftDiameter4Stage).Value/2;
                 case NumberOfStage.Stage5:
-                    return GetParameter(ParameterType.ShaftDiameter5Stage).Value / 2;
+                    return GetParameter(ParameterType.ShaftDiameter5Stage).Value/2;
             }
             throw new ApplicationException("There is no such number of stage!");
         }
 
-        
+
         /// <summary>
         /// Получить координату Х.
         /// </summary>
@@ -146,33 +145,36 @@ namespace Val
             switch (_numberOfStage)
             {
                 case NumberOfStage.Stage1:
-                    return (-GetParameter(ParameterType.ShaftLength5Stage).Value/ 2
-                            - GetParameter(ParameterType.Groove).Value)*1.5 ;
+                    return (-GetParameter(ParameterType.ShaftLength5Stage).Value/2
+                            - GetParameter(ParameterType.Groove).Value)*1.5;
                 case NumberOfStage.Stage2:
                     return (-GetParameter(ParameterType.ShaftLength5Stage).Value
-                            - GetParameter(ParameterType.Groove).Value) / 2;
+                            - GetParameter(ParameterType.Groove).Value)/2;
                 case NumberOfStage.Stage3:
-                    return (-GetParameter(ParameterType.ShaftLength4Stage).Value 
-                        - GetParameter(ParameterType.ShaftLength5Stage).Value
-                        - GetParameter(ParameterType.ShaftLength3Stage).Value
-                        -GetParameter(ParameterType.Groove).Value) / 20;
+                    return (-GetParameter(ParameterType.ShaftLength4Stage).Value
+                            - GetParameter(ParameterType.ShaftLength5Stage).Value
+                            - GetParameter(ParameterType.ShaftLength3Stage).Value
+                            - GetParameter(ParameterType.Groove).Value)/20;
                 case NumberOfStage.Stage4:
-                    return (-GetParameter(ParameterType.ShaftLength4Stage).Value 
-                        - GetParameter(ParameterType.ShaftLength5Stage).Value) / 20;
+                    return (-GetParameter(ParameterType.ShaftLength4Stage).Value
+                            - GetParameter(ParameterType.ShaftLength5Stage).Value)/20;
                 case NumberOfStage.Stage5:
                     return 0.0;
-                 
+
             }
             throw new ApplicationException("There is no such number of stage!");
         }
 
 
+
         /// <summary>
         /// Проверка значений и установка ограничений.
         /// </summary>
-       private void Validate()
+        private void Validate()
         {
-            if (_parameters[ParameterType.ShaftLength1Stage].Value >=
+            if (
+
+                _parameters[ParameterType.ShaftLength1Stage].Value >=
                 _parameters[ParameterType.LengthKeyway1Stage].Value)
             {
                 _parameters[ParameterType.ShaftLength1Stage].Validate();
@@ -185,7 +187,7 @@ namespace Val
             if (_parameters[ParameterType.ShaftDiameter1Stage].Value >=
                 _parameters[ParameterType.WidthKeyway1Stage].Value)
             {
-                 _parameters[ParameterType.ShaftDiameter1Stage].Validate();
+                _parameters[ParameterType.ShaftDiameter1Stage].Validate();
             }
             else
             {
@@ -193,7 +195,7 @@ namespace Val
             }
 
             if (_parameters[ParameterType.ShaftLength3Stage].Value >=
-                 _parameters[ParameterType.LengthKeyway3Stage].Value)
+                _parameters[ParameterType.LengthKeyway3Stage].Value)
             {
                 _parameters[ParameterType.ShaftLength3Stage].Validate();
             }
@@ -205,7 +207,7 @@ namespace Val
             if (_parameters[ParameterType.ShaftDiameter3Stage].Value >=
                 _parameters[ParameterType.WidthKeyway3Stage].Value)
             {
-               _parameters[ParameterType.ShaftDiameter3Stage].Validate();
+                _parameters[ParameterType.ShaftDiameter3Stage].Validate();
             }
             else
             {
@@ -224,6 +226,7 @@ namespace Val
 
 
         }
+
         #endregion
     }
 }

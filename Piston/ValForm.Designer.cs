@@ -504,7 +504,6 @@
             this.captionTextBox.Size = new System.Drawing.Size(100, 20);
             this.captionTextBox.TabIndex = 36;
             this.captionTextBox.Text = "HELP";
-            this.captionTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.captionTextBox_KeyPress);
             // 
             // orientComboBox
             // 

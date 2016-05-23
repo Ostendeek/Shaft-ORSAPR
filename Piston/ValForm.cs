@@ -10,7 +10,7 @@ using System.Text.RegularExpressions;
 namespace Val
 {
     /// <summary>
-    /// 
+    /// Класс, отвечающий -за внешний вид и функционал формы.
     /// </summary>
     public partial class ValForm : Form
     {
@@ -29,7 +29,7 @@ namespace Val
         /// </summary>
         private InventorApi _inventorApi;
 
-#region Dictionary
+        #region Dictionary
 
         /// <summary>
         /// Словарь соответствия номера ступени и русскоязчного описания.
@@ -76,7 +76,7 @@ namespace Val
                 {NumberOfStage.Stage4, ParameterType.ShaftLength4Stage},
                 {NumberOfStage.Stage5, ParameterType.ShaftLength5Stage},
             };
-#endregion
+            #endregion
 
         /// <summary>
         /// Инициализация формы.
@@ -129,28 +129,28 @@ namespace Val
             }
         }
 
-       
+       /* Метод для нагрузочного тестирования
         private void StressTesting()
         {
             Stopwatch stopwatch = new Stopwatch();
            var listTimes = new List<string>();
-
             for (int i = 0; i < 20; i++)
             {
                 stopwatch.Start();
+              var valForm = new ValForm();
+                valForm.BuildVal_Click(null, new EventArgs());
 
-                //Нужно вызвать это, подумать как сделать
+                //Нужно вызвать это, узнать как сделать
                 // _inventorApi = new InventorApi();
                 // _valProperties.SetCaption(GetOrientation(), (NumberOfStage)selectComboBox.SelectedIndex,
                 //     (OrientationParameterType)orientComboBox.SelectedIndex, captionTextBox.Text);
                 // _valModel = new ValModel(_valProperties, _inventorApi);
-                //
                 // _valModel.Build(); 
                 stopwatch.Stop();
                 listTimes.Add(stopwatch.Elapsed.ToString());
                 stopwatch.Reset();
             }
-
+            
             // Запись результатов тестирования в файл.
            StreamWriter file = new StreamWriter(@"C:\Users\ostende\Documents\WriteTimes50.txt");
            {
@@ -159,10 +159,10 @@ namespace Val
            }
            file.Close();
         }
-
+        */
 
         /// <summary>
-        /// 
+        /// Геттер ориентации текста.
         /// </summary>
         /// <returns></returns>
         private ParameterType GetOrientation()
@@ -174,17 +174,5 @@ namespace Val
                 ? _horizontalOrientation[numberOfStage]
                 : _verticalOrientation[numberOfStage];
         }
-
-      
-
-        private void captionTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char l = e.KeyChar;
-            if ((l < 'А' || l > 'Я') && (l < 'A' || l > 'Z') && (l < 'a' || l > 'z') && (l < 'а' || l > 'я') && l != '\b' && l != '.')
-            {
-                e.Handled = true;
-            }
-        }
-        
     }
 }

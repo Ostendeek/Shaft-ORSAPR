@@ -22,6 +22,11 @@ namespace Val
         /// </summary>
         private readonly InventorApi _api;
 
+        /// <summary>
+        /// Ориентация текста.
+        /// </summary>
+        private OrientationParameterType _orientationParameterType;
+
         #endregion
 
         #region Methods
@@ -111,7 +116,9 @@ namespace Val
 
             #endregion chamfer
             
-           _api.DrawText(_valProperties.Caption, _valProperties.GetPointX(), 0.0, _valProperties.GetPointZ());
+           
+            _api.DrawText(_valProperties.Caption, _valProperties.GetPointX(), 0.0,
+                _valProperties.GetPointZ(), _valProperties.OrientationParameterType);
 
             #region PAZ
 
